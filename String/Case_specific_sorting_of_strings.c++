@@ -25,3 +25,65 @@ You only need to complete the function caseSort that returns sorted string.
 
 Expected Time Complexity: O(N*Log(N)).
 Expected Auxiliary Space: O(N).
+
+
+
+// { Driver Code Starts
+#include<bits/stdc++.h>
+using namespace std;
+
+
+ // } Driver Code Ends
+
+
+
+class Solution
+{
+    public:
+    //Function to perform case-specific sorting of strings.
+    string caseSort(string str, int n)
+    {
+        // your code here
+        vector<char>v1;
+        vector<char>v2;
+        for(int i=0;i<n;i++){
+            if(str[i]>='a'&&str[i]<='z'){
+                v1.push_back(str[i]);
+            }
+            else if(str[i]>='A'&& str[i]<='Z'){
+                v2.push_back(str[i]);
+            }
+        }
+        sort(v1.begin(),v1.end());
+        sort(v2.begin(),v2.end());
+        int j=0,k=0;
+        for(int i=0;i<n;i++){
+            if(str[i]>='a'&&str[i]<='z'){
+                str[i]=v1[j];
+                ++j;
+            }
+             else if(str[i]>='A'&& str[i]<='Z'){
+                str[i]=v2[k];
+                ++k;
+            }
+        }
+        return str;
+    }
+};
+
+// { Driver Code Starts.
+
+int main()
+{
+	int t;
+	cin>>t;
+	while(t--)
+	{
+		int n;
+		cin>>n;
+		string str;
+		cin>>str;
+		Solution obj;
+		cout<<obj.caseSort (str, n)<<endl;
+	}
+}  // } Driver Code Ends
